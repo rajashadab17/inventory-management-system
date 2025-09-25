@@ -1,4 +1,6 @@
+"use client"
 import { AppSidebar } from "@/components/app-sidebar";
+import { toast } from "@/components/custom-toast";
 import { NavActions } from "@/components/nav-actions";
 import {
   Breadcrumb,
@@ -14,8 +16,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useEffect } from "react";
 
 export default function Page() {
+
+  useEffect(() => {
+  toast.success({title:'Success',description: 'You have successfully logedin!'})
+  }, [])
 
   return (
     <SidebarProvider>
