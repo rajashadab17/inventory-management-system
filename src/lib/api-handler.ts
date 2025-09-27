@@ -31,4 +31,8 @@ export class ApiClient {
 
     return response.json() as Promise<T>;
   }
+
+  async getUser(userEmail: string): Promise<any> {
+    return this.fetch(`/user/${encodeURIComponent(userEmail)}`);
+  }
 }
