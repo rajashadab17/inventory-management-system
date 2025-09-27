@@ -4,7 +4,7 @@ interface ApiClientOptions {
   headers?: Record<string, string>;
 }
 
-export class ApiClient {
+class ApiClient {
   private baseURL: string;
 
   constructor(baseURL: string = "/api") {
@@ -36,3 +36,6 @@ export class ApiClient {
     return this.fetch(`/user/${encodeURIComponent(userEmail)}`);
   }
 }
+
+
+export const apiClient = new ApiClient();
