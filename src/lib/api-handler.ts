@@ -35,6 +35,13 @@ class ApiClient {
   async getUser(userEmail: string): Promise<any> {
     return this.fetch(`/user/${encodeURIComponent(userEmail)}`);
   }
+
+  async registerUser(userData: any): Promise<any>{
+    return this.fetch('/user',{
+      method:"POST",
+      body:userData
+    })
+  }
 }
 
 

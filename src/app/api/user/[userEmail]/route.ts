@@ -6,10 +6,7 @@ interface Params {
   params: { userEmail: string };
 }
 
-export async function GET(
-  req: Request,
-  { params }: Params
-): Promise<Response> {
+export async function GET(req: Request, { params }: Params): Promise<Response> {
   try {
     await connectToDatabase();
 
@@ -31,7 +28,6 @@ export async function GET(
     }
 
     return NextResponse.json({ success: true, user }, { status: 200 });
-
   } catch (error) {
     console.error("Error fetching User Details:", error);
     return NextResponse.json(
@@ -40,3 +36,5 @@ export async function GET(
     );
   }
 }
+
+

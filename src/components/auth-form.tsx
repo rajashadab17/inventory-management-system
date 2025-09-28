@@ -105,9 +105,36 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
     }
   }
 
-  function onSignUpSubmit() {
-    console.log("Signup form submitted");
-  }
+  const onSignUpSubmit = async () => {
+    const values = signUpForm.getValues();
+    console.log(values);
+
+    const isAnyFieldEmpty = Object.values(values).some(
+      (value) => !value?.toString().trim()
+    );
+
+    if (isAnyFieldEmpty) {
+      toast.warning({
+        title: "Warning",
+        description: "Please fill all fields",
+      });
+      return;
+    }
+
+    try {
+      await apiClient.registerUser(values);
+      toast.success({
+        title: "Success",
+        description: "You have successfully Registered!",
+      });
+      setIsSignIn(true);
+    } catch (error) {
+      toast.error({
+        title: "Error",
+        description: (error as Error).message,
+      });
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background to-muted p-4">
