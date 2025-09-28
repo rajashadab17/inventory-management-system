@@ -90,13 +90,43 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
   const router = useRouter();
 
   async function onSignInSubmit() {
-    try {
-      await apiClient.getUser(signInData.userEmail);
-      toast.success({
-        title: "Success",
-        description: "You have successfully logged in!",
+    const values = signInForm.getValues();
+    console.log(values);
+
+    const isAnyFieldEmpty = Object.values(values).some(
+      (value) => !value?.toString().trim()
+    );
+
+    if (isAnyFieldEmpty) {
+      toast.warning({
+        title: "Warning",
+        description: "Please fill all fields",
       });
-      router.push("/dashboard");
+      return;
+    }
+
+    try {
+      let UserDataRequest = await apiClient.getUser(signInData.userEmail);
+      if (UserDataRequest.message == "User not found!") {
+        toast.warning({
+          title: "Warning",
+          description: "User not found!",
+        });
+      } else {
+        // console.log(UserDataRequest)
+        if (values.userEmail == UserDataRequest.user.userEmail && values.password == UserDataRequest.user.password) {
+          toast.success({
+            title: "Success",
+            description: "You have successfully logged in!",
+          });
+          router.push("/dashboard");
+        } else {
+          toast.warning({
+            title: "Warning",
+            description: "Invalid Credentials!",
+          });
+        }
+      }
     } catch (error) {
       toast.error({
         title: "Error",
