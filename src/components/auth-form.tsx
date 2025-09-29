@@ -155,7 +155,15 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
       });
       return;
     }
-    
+
+    if (!values.userEmail.includes('@') || !values.userEmail.includes('.com')) {
+      toast.warning({
+        title: "Warning",
+        description: "Plase input a valid email address",
+      });
+      return;
+    }
+
     try {
       await apiClient.registerUser(values);
       toast.success({
