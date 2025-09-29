@@ -106,17 +106,12 @@ const data: DataItem[][] = [
 
 export function NavActions() {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = React.useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setIsOpen(false);
   }, []);
 
-  const handleSettingsClick = () => {
-    setIsDropdownOpen(false); 
-    setIsSettingsDialogOpen(true); 
-  };
 
   return (
     <div className="flex items-center gap-3 text-sm">

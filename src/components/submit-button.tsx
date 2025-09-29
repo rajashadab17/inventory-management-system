@@ -32,7 +32,7 @@ export default function SubmitButton({
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1200));
 
       if (onClickFunction) {
         await onClickFunction();
