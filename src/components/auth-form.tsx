@@ -91,7 +91,6 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
 
   async function onSignInSubmit() {
     const values = signInForm.getValues();
-    console.log(values);
 
     const isAnyFieldEmpty = Object.values(values).some(
       (value) => !value?.toString().trim()
@@ -113,7 +112,6 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
           description: "User not found!",
         });
       } else {
-        // console.log(UserDataRequest)
         if (values.userEmail == UserDataRequest.user.userEmail && values.password == UserDataRequest.user.password) {
           toast.success({
             title: "Success",
@@ -137,7 +135,6 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
 
   const onSignUpSubmit = async () => {
     const values = signUpForm.getValues();
-    console.log(values);
 
     const isAnyFieldEmpty = Object.values(values).some(
       (value) => !value?.toString().trim()
@@ -151,6 +148,14 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
       return;
     }
 
+    if (values.password != values.confirmPassword) {
+      toast.warning({
+        title: "Warning",
+        description: "Confirm Password didn't match with Password",
+      });
+      return;
+    }
+    
     try {
       await apiClient.registerUser(values);
       toast.success({
