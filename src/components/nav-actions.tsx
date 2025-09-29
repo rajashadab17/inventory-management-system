@@ -35,6 +35,7 @@ import {
 import { ModeToggle } from "./mode-toggle";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { SettingsDialog } from "./setting-dialog";
 
 type DataItem = {
   label: string;
@@ -106,12 +107,17 @@ const data: DataItem[][] = [
 
 export function NavActions() {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = React.useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setIsOpen(false);
   }, []);
 
+  const handleSettingsClick = () => {
+    setIsDropdownOpen(false); 
+    setIsSettingsDialogOpen(true); 
+  };
 
   return (
     <div className="flex items-center gap-3 text-sm">
@@ -175,6 +181,8 @@ export function NavActions() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <SettingsDialog open={isSettingsDialogOpen} onOpenChange={setIsSettingsDialogOpen} />
     </div>
   );
 }
