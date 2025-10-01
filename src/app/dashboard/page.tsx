@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import {
   Calendar,
@@ -5,9 +7,13 @@ import {
   Package,
   Plus
 } from "lucide-react"
+import { useEffect } from "react"
 
 
 export default function Dashboard() {
+  useEffect(() => {
+    document.title = "Business Dashboard - Inventory & Sales Management"
+  }, [])
 
   return (
     <div className="min-h-screen bg-background">
@@ -38,6 +44,7 @@ export default function Dashboard() {
           </div>
         </div>
       </header>
+
     </div>
   )
 }
