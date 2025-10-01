@@ -42,6 +42,12 @@ class ApiClient {
       body:userData
     })
   }
+
+  async getInvoicers(): Promise<any> {
+    return this.fetch(`/invoices`);
+  }
+
+
 }
 
 

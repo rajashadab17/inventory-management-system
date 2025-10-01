@@ -1,67 +1,43 @@
-"use client"
-import { AppSidebar } from "@/components/app-sidebar";
-import { toast } from "@/components/custom-toast";
-import { NavActions } from "@/components/nav-actions";
+import { Button } from "@/components/ui/button"
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { useEffect } from "react";
+  Calendar,
+  Download,
+  Package,
+  Plus
+} from "lucide-react"
 
-export default function Page() {
 
-  useEffect(() => {
-  toast.success({title:'Success',description: 'You have successfully logedin!'})
-  }, [])
+export default function Dashboard() {
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <div className="ml-auto px-3">
-        <NavActions />
-      </div>
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
-            />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between px-6">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-emerald-600 flex items-center justify-center">
+              <Package className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground">Business Dashboard</h1>
+              <p className="text-xs text-muted-foreground">Inventory & Sales Management</p>
+            </div>
           </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
+          <div className="flex items-center gap-3">
+            <Button variant="outline" size="sm" className="gap-2 bg-transparent">
+              <Calendar className="h-4 w-4" />
+              <span className="hidden sm:inline">Today</span>
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2 bg-transparent">
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">Export</span>
+            </Button>
+            <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700">
+              <Plus className="h-4 w-4" />
+              <span className="hidden sm:inline">New Sale</span>
+            </Button>
           </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
         </div>
-      </SidebarInset>
-    </SidebarProvider>
-  );
+      </header>
+    </div>
+  )
 }
