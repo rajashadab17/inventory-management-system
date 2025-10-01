@@ -3,10 +3,13 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
+  AlertTriangle,
   Calendar,
+  DollarSign,
   Download,
   Package,
   Plus,
+  ShoppingCart,
   TrendingDown,
   TrendingUp
 } from "lucide-react"
@@ -161,13 +164,13 @@ const StatCard = ({ title, value, change, icon: Icon, trend }: any) => {
 }
 
 export default function Dashboard() {
+
   useEffect(() => {
     document.title = "Business Dashboard - Inventory & Sales Management"
   }, [])
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-2">
@@ -196,6 +199,16 @@ export default function Dashboard() {
         </div>
       </header>
 
+      <main className="container px-6 py-8">
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
+          <StatCard title="Total Revenue" value="$72,450" change="+12.5%" icon={DollarSign} trend="up" />
+          <StatCard title="Total Sales" value="1,234" change="+8.2%" icon={ShoppingCart} trend="up" />
+          <StatCard title="Inventory Items" value="356" change="-2.4%" icon={Package} trend="down" />
+          <StatCard title="Low Stock Alerts" value="12" change="+3" icon={AlertTriangle} trend="down" />
+        </div>
+
+      </main>
     </div>
   )
 }
