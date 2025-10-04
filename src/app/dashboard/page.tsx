@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tabs } from "@radix-ui/react-tabs";
 import {
   AlertTriangle,
@@ -188,7 +188,7 @@ export default function Dashboard() {
   useEffect(() => {
     document.title = "Business Dashboard - Inventory & Sales Management";
   }, []);
-  
+
   const [selectedPeriod, setSelectedPeriod] = useState("month");
 
   return (
@@ -308,6 +308,10 @@ export default function Dashboard() {
               </SelectContent>
             </Select>
           </div>
+          
+          <TabsContent value="overview" className="space-y-6">
+
+          </TabsContent>
         </Tabs>
       </main>
     </div>
