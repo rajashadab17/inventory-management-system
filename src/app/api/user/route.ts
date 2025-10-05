@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   try {
     await connectToDatabase();
     const userData = await request.json();
-    let newUser = new User(userData);
+    const newUser = new User(userData);
     await newUser.save();
     return NextResponse.json({ status: 201 });
     
