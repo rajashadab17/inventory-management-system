@@ -1,9 +1,9 @@
 import { connectToDatabase } from "@/lib/db";
 import User, { IUser } from "@/models/User";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { userEmail: string } }
 ): Promise<Response> {
   try {
