@@ -18,7 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tabs } from "@radix-ui/react-tabs";
 import {
@@ -29,6 +36,7 @@ import {
   ChevronRight,
   DollarSign,
   Download,
+  Edit,
   Eye,
   Filter,
   MoreVertical,
@@ -36,6 +44,7 @@ import {
   Plus,
   Search,
   ShoppingCart,
+  Trash2,
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
@@ -220,7 +229,7 @@ export default function Dashboard() {
   }, []);
 
   const [selectedPeriod, setSelectedPeriod] = useState("month");
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="min-h-screen bg-background">
@@ -469,7 +478,9 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle>Recent Sales</CardTitle>
-                      <CardDescription>Latest transactions and orders</CardDescription>
+                      <CardDescription>
+                        Latest transactions and orders
+                      </CardDescription>
                     </div>
                     <Button variant="ghost" size="sm" className="gap-2">
                       View All
@@ -486,9 +497,15 @@ export default function Dashboard() {
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <p className="font-medium text-sm">{sale.customer}</p>
+                            <p className="font-medium text-sm">
+                              {sale.customer}
+                            </p>
                             <Badge
-                              variant={sale.status === "Completed" ? "default" : "secondary"}
+                              variant={
+                                sale.status === "Completed"
+                                  ? "default"
+                                  : "secondary"
+                              }
                               className={
                                 sale.status === "Completed"
                                   ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100"
@@ -502,7 +519,9 @@ export default function Dashboard() {
                             {sale.id} • {sale.items} items • {sale.date}
                           </p>
                         </div>
-                        <p className="font-bold text-emerald-600">${sale.amount.toFixed(2)}</p>
+                        <p className="font-bold text-emerald-600">
+                          ${sale.amount.toFixed(2)}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -513,7 +532,9 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between">
                     <div>
                       <CardTitle>Top Products</CardTitle>
-                      <CardDescription>Best performing items this month</CardDescription>
+                      <CardDescription>
+                        Best performing items this month
+                      </CardDescription>
                     </div>
                     <Button variant="ghost" size="sm" className="gap-2">
                       View All
@@ -531,25 +552,40 @@ export default function Dashboard() {
                               {index + 1}
                             </div>
                             <div>
-                              <p className="font-medium text-sm">{product.name}</p>
-                              <p className="text-xs text-muted-foreground">{product.sold} sold</p>
+                              <p className="font-medium text-sm">
+                                {product.name}
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                {product.sold} sold
+                              </p>
                             </div>
                           </div>
                           <div className="text-right">
-                            <p className="font-bold text-sm">${product.revenue.toFixed(2)}</p>
+                            <p className="font-bold text-sm">
+                              ${product.revenue.toFixed(2)}
+                            </p>
                             <div className="flex items-center gap-1">
                               {product.trend > 0 ? (
                                 <ArrowUpRight className="h-3 w-3 text-emerald-600" />
                               ) : (
                                 <ArrowDownRight className="h-3 w-3 text-rose-600" />
                               )}
-                              <span className={`text-xs ${product.trend > 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                              <span
+                                className={`text-xs ${
+                                  product.trend > 0
+                                    ? "text-emerald-600"
+                                    : "text-rose-600"
+                                }`}
+                              >
                                 {Math.abs(product.trend)}%
                               </span>
                             </div>
                           </div>
                         </div>
-                        <Progress value={(product.sold / 250) * 100} className="h-1.5" />
+                        <Progress
+                          value={(product.sold / 250) * 100}
+                          className="h-1.5"
+                        />
                       </div>
                     ))}
                   </div>
@@ -564,7 +600,9 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle>Sales Transactions</CardTitle>
-                    <CardDescription>Complete list of all sales and invoices</CardDescription>
+                    <CardDescription>
+                      Complete list of all sales and invoices
+                    </CardDescription>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="relative">
@@ -602,12 +640,20 @@ export default function Dashboard() {
                         <TableCell>{sale.customer}</TableCell>
                         <TableCell>{sale.date}</TableCell>
                         <TableCell>{sale.items}</TableCell>
-                        <TableCell className="font-bold text-emerald-600">${sale.amount.toFixed(2)}</TableCell>
+                        <TableCell className="font-bold text-emerald-600">
+                          ${sale.amount.toFixed(2)}
+                        </TableCell>
                         <TableCell>
                           <Badge
-                            variant={sale.status === "Completed" ? "default" : "secondary"}
+                            variant={
+                              sale.status === "Completed"
+                                ? "default"
+                                : "secondary"
+                            }
                             className={
-                              sale.status === "Completed" ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100" : ""
+                              sale.status === "Completed"
+                                ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100"
+                                : ""
                             }
                           >
                             {sale.status}
@@ -615,13 +661,25 @@ export default function Dashboard() {
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
                               <Eye className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
                               <Download className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
                               <MoreVertical className="h-4 w-4" />
                             </Button>
                           </div>
@@ -635,8 +693,123 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="inventory" className="space-y-6">
-            
-            </TabsContent>
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Inventory Management</CardTitle>
+                    <CardDescription>
+                      Track and manage your product inventory
+                    </CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        placeholder="Search products..."
+                        className="pl-9 w-64"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                    </div>
+                    <Button variant="outline" size="icon">
+                      <Filter className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="gap-2 bg-emerald-600 hover:bg-emerald-700"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Add Product
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Product ID</TableHead>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Category</TableHead>
+                      <TableHead>Stock</TableHead>
+                      <TableHead>Reorder Level</TableHead>
+                      <TableHead>Price</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {inventoryData.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell className="font-medium">{item.id}</TableCell>
+                        <TableCell>{item.name}</TableCell>
+                        <TableCell>{item.category}</TableCell>
+                        <TableCell>
+                          <div className="space-y-1">
+                            <p className="font-medium">{item.stock}</p>
+                            <Progress
+                              value={(item.stock / item.reorderLevel) * 50}
+                              className="h-1.5 w-16"
+                            />
+                          </div>
+                        </TableCell>
+                        <TableCell>{item.reorderLevel}</TableCell>
+                        <TableCell className="font-medium">
+                          ${item.price.toFixed(2)}
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={
+                              item.status === "In Stock"
+                                ? "default"
+                                : item.status === "Low Stock"
+                                ? "secondary"
+                                : "destructive"
+                            }
+                            className={
+                              item.status === "In Stock"
+                                ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100"
+                                : item.status === "Low Stock"
+                                ? "bg-amber-100 text-amber-700 hover:bg-amber-100"
+                                : ""
+                            }
+                          >
+                            {item.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
       </main>
     </div>
