@@ -105,7 +105,7 @@ export default function AuthForm({ ShowPage }: AuthFormProps) {
     }
 
     try {
-      let UserDataRequest = await apiClient.getUser(signInData.userEmail);
+      const UserDataRequest = await apiClient.getUser(signInData.userEmail);
       if (UserDataRequest.message == "User not found!") {
         toast.warning({
           title: "Warning",
