@@ -4,12 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userEmail: string } }
+  { params }: { params: Promise<{ userEmail: string }> }
 ): Promise<NextResponse> {
   try {
     await connectToDatabase();
 
-    const { userEmail } = params;
+    const { userEmail } = await params;
     if (!userEmail) {
       return NextResponse.json(
         { success: false, message: "Kindly fill all the fields!" },
