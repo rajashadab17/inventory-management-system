@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useState, MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 interface SubmitButtonProps {
   buttonTitle: string;
@@ -17,7 +17,6 @@ interface SubmitButtonProps {
 
 export default function SubmitButton({
   buttonTitle,
-  formType,
   onClickFunction,
   WhileLoading,
   size = "default",
