@@ -633,6 +633,10 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </TabsContent>
+
+          <TabsContent value="inventory" className="space-y-6">
+            
+            </TabsContent>
         </Tabs>
       </main>
     </div>
