@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import {
   Select,
@@ -17,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tabs } from "@radix-ui/react-tabs";
 import {
@@ -27,8 +29,12 @@ import {
   ChevronRight,
   DollarSign,
   Download,
+  Eye,
+  Filter,
+  MoreVertical,
   Package,
   Plus,
+  Search,
   ShoppingCart,
   TrendingDown,
   TrendingUp,
@@ -214,6 +220,7 @@ export default function Dashboard() {
   }, []);
 
   const [selectedPeriod, setSelectedPeriod] = useState("month");
+  const [searchQuery, setSearchQuery] = useState("")
 
   return (
     <div className="min-h-screen bg-background">
@@ -549,6 +556,82 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          <TabsContent value="sales" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Sales Transactions</CardTitle>
+                    <CardDescription>Complete list of all sales and invoices</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        placeholder="Search sales..."
+                        className="pl-9 w-64"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                    </div>
+                    <Button variant="outline" size="icon">
+                      <Filter className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Invoice ID</TableHead>
+                      <TableHead>Customer</TableHead>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Items</TableHead>
+                      <TableHead>Amount</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {recentSales.map((sale) => (
+                      <TableRow key={sale.id}>
+                        <TableCell className="font-medium">{sale.id}</TableCell>
+                        <TableCell>{sale.customer}</TableCell>
+                        <TableCell>{sale.date}</TableCell>
+                        <TableCell>{sale.items}</TableCell>
+                        <TableCell className="font-bold text-emerald-600">${sale.amount.toFixed(2)}</TableCell>
+                        <TableCell>
+                          <Badge
+                            variant={sale.status === "Completed" ? "default" : "secondary"}
+                            className={
+                              sale.status === "Completed" ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100" : ""
+                            }
+                          >
+                            {sale.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Download className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <MoreVertical className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </main>
