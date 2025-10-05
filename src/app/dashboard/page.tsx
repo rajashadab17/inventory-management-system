@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import {
   Select,
   SelectContent,
@@ -20,6 +21,8 @@ import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tabs } from "@radix-ui/react-tabs";
 import {
   AlertTriangle,
+  ArrowDownRight,
+  ArrowUpRight,
   Calendar,
   ChevronRight,
   DollarSign,
@@ -493,6 +496,53 @@ export default function Dashboard() {
                           </p>
                         </div>
                         <p className="font-bold text-emerald-600">${sale.amount.toFixed(2)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Top Products</CardTitle>
+                      <CardDescription>Best performing items this month</CardDescription>
+                    </div>
+                    <Button variant="ghost" size="sm" className="gap-2">
+                      View All
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {topProducts.map((product, index) => (
+                      <div key={product.name} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm">
+                              {index + 1}
+                            </div>
+                            <div>
+                              <p className="font-medium text-sm">{product.name}</p>
+                              <p className="text-xs text-muted-foreground">{product.sold} sold</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-bold text-sm">${product.revenue.toFixed(2)}</p>
+                            <div className="flex items-center gap-1">
+                              {product.trend > 0 ? (
+                                <ArrowUpRight className="h-3 w-3 text-emerald-600" />
+                              ) : (
+                                <ArrowDownRight className="h-3 w-3 text-rose-600" />
+                              )}
+                              <span className={`text-xs ${product.trend > 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                                {Math.abs(product.trend)}%
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <Progress value={(product.sold / 250) * 100} className="h-1.5" />
                       </div>
                     ))}
                   </div>
