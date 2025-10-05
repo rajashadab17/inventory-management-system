@@ -32,18 +32,18 @@ class ApiClient {
     return response.json() as Promise<T>;
   }
 
-  async getUser(userEmail: string): Promise<any> {
+  async getUser(userEmail: string): Promise<unknown> {
     return this.fetch(`/user/${encodeURIComponent(userEmail)}`);
   }
 
-  async registerUser(userData: any): Promise<any>{
+  async registerUser(userData: any): Promise<unknown>{
     return this.fetch('/user',{
       method:"POST",
       body:userData
     })
   }
 
-  async getInvoicers(): Promise<any> {
+  async getInvoicers(): Promise<unknown> {
     return this.fetch(`/invoices`);
   }
 
