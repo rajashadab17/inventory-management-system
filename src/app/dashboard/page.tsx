@@ -809,6 +809,55 @@ export default function Dashboard() {
                 </Table>
               </CardContent>
             </Card>
+            <div className="grid gap-6 md:grid-cols-3">
+              <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-medium text-amber-900 dark:text-amber-100">
+                    Low Stock Items
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-amber-900 dark:text-amber-100">
+                    8
+                  </div>
+                  <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
+                    Items below reorder level
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-rose-200 bg-rose-50 dark:border-rose-800 dark:bg-rose-950">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-medium text-rose-900 dark:text-rose-100">
+                    Critical Stock
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-rose-900 dark:text-rose-100">
+                    4
+                  </div>
+                  <p className="text-xs text-rose-700 dark:text-rose-300 mt-1">
+                    Items require immediate attention
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-emerald-200 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-medium text-emerald-900 dark:text-emerald-100">
+                    Well Stocked
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-emerald-900 dark:text-emerald-100">
+                    344
+                  </div>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-1">
+                    Items with healthy stock levels
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
         </Tabs>
       </main>
