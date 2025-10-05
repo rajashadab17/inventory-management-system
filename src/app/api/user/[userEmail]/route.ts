@@ -2,14 +2,21 @@ import { connectToDatabase } from "@/lib/db";
 import User, { IUser } from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 
+interface RouteContext {
+  params: {
+    userEmail: string;
+  };
+}
+
 export async function GET(
   req: NextRequest,
-  { params }: { params: { userEmail: string } }
-): Promise<Response> {
+  context: RouteContext
+) {
   try {
     await connectToDatabase();
 
-    const { userEmail } = params;
+    const { userEmail } = context.params;
+
     if (!userEmail) {
       return NextResponse.json(
         { success: false, message: "Kindly fill all the fields!" },
@@ -21,14 +28,14 @@ export async function GET(
 
     if (!user) {
       return NextResponse.json(
-        { success: true, message: "User not found!" },
-        { status: 200 }
+        { success: false, message: "User not found!" },
+        { status: 404 }
       );
     }
 
     return NextResponse.json({ success: true, user }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching User Details:", error);
+    console.error("Error fetching user details:", error);
     return NextResponse.json(
       { success: false, message: "Internal Server Error" },
       { status: 500 }
