@@ -33,7 +33,6 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   Calendar,
-  ChevronRight,
   DollarSign,
   Download,
   Edit,
@@ -46,25 +45,20 @@ import {
   ShoppingCart,
   Trash2,
   TrendingDown,
-  TrendingUp,
+  TrendingUp
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
-  Area,
-  AreaChart,
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
   Legend,
   Line,
   LineChart,
-  Pie,
-  PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from "recharts";
 import OverviewTab from "./OverviewTab";
 
