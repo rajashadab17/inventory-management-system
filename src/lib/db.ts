@@ -15,16 +15,11 @@ declare global {
   } | undefined;
 }
 
-let cached: {
-  connection: Connection | null;
-  Promise: Promise<Connection> | null;
-};
-
 if (!global.mongoose) {
   global.mongoose = { connection: null, Promise: null };
 }
 
-cached = global.mongoose;
+const cached = global.mongoose;
 
 export async function connectToDatabase(): Promise<Connection> {
   if (cached.connection) {
