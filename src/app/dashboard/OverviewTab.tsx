@@ -23,7 +23,7 @@ import {
   YAxis,
 } from "recharts";
 
-const OverviewTab = ({recentSales, revenueData}:any) => {
+const OverviewTab = ({recentSales, revenueData}) => {
   const salesByCategory = [
     { name: "Electronics", value: 35, amount: 125000 },
     { name: "Furniture", value: 25, amount: 89000 },
@@ -112,7 +112,7 @@ const OverviewTab = ({recentSales, revenueData}:any) => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }: any) =>
+                  label={({ name, percent }) =>
                     `${name} ${(percent * 100).toFixed(0)}%`
                   }
                   outerRadius={80}
@@ -156,7 +156,7 @@ const OverviewTab = ({recentSales, revenueData}:any) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentSales.map((sale:any) => (
+              {recentSales.map((sale) => (
                 <div
                   key={sale.id}
                   className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors"

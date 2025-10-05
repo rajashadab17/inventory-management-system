@@ -171,7 +171,7 @@ const recentSales = [
 ];
 
 
-const StatCard = ({ title, value, change, icon: Icon, trend }: any) => {
+const StatCard = ({ title, value, change, icon: Icon, trend }) => {
   const isPositive = trend === "up";
   const TrendIcon = isPositive ? TrendingUp : TrendingDown;
 
