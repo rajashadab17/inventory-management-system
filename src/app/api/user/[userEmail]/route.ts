@@ -2,11 +2,10 @@ import { connectToDatabase } from "@/lib/db";
 import User, { IUser } from "@/models/User";
 import { NextResponse } from "next/server";
 
-interface Params {
-  params: { userEmail: string };
-}
-
-export async function GET(req: Request, { params }: Params): Promise<Response> {
+export async function GET(
+  req: Request,
+  { params }: { params: { userEmail: string } }
+): Promise<Response> {
   try {
     await connectToDatabase();
 
@@ -36,5 +35,3 @@ export async function GET(req: Request, { params }: Params): Promise<Response> {
     );
   }
 }
-
-
