@@ -885,8 +885,16 @@ export default function Dashboard() {
                         }}
                       />
                       <Legend />
-                      <Bar dataKey="revenue" fill="#059669" radius={[8, 8, 0, 0]} />
-                      <Bar dataKey="expenses" fill="#6b7280" radius={[8, 8, 0, 0]} />
+                      <Bar
+                        dataKey="revenue"
+                        fill="#059669"
+                        radius={[8, 8, 0, 0]}
+                      />
+                      <Bar
+                        dataKey="expenses"
+                        fill="#6b7280"
+                        radius={[8, 8, 0, 0]}
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -921,7 +929,49 @@ export default function Dashboard() {
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
-              </div>
+            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Performance Metrics</CardTitle>
+                <CardDescription>Key business indicators and trends</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Average Order Value</p>
+                    <p className="text-2xl font-bold">$2,456</p>
+                    <div className="flex items-center gap-1 text-sm">
+                      <ArrowUpRight className="h-4 w-4 text-emerald-600" />
+                      <span className="text-emerald-600 font-medium">8.2%</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Conversion Rate</p>
+                    <p className="text-2xl font-bold">3.24%</p>
+                    <div className="flex items-center gap-1 text-sm">
+                      <ArrowUpRight className="h-4 w-4 text-emerald-600" />
+                      <span className="text-emerald-600 font-medium">12.5%</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Customer Retention</p>
+                    <p className="text-2xl font-bold">87.5%</p>
+                    <div className="flex items-center gap-1 text-sm">
+                      <ArrowUpRight className="h-4 w-4 text-emerald-600" />
+                      <span className="text-emerald-600 font-medium">5.3%</span>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Inventory Turnover</p>
+                    <p className="text-2xl font-bold">4.2x</p>
+                    <div className="flex items-center gap-1 text-sm">
+                      <ArrowDownRight className="h-4 w-4 text-rose-600" />
+                      <span className="text-rose-600 font-medium">2.1%</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </main>
