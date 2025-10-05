@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -34,7 +40,7 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis
+  YAxis,
 } from "recharts";
 
 const revenueData = [
@@ -321,25 +327,55 @@ export default function Dashboard() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <TabsContent value="overview" className="space-y-6">
             <div className="grid gap-6 lg:grid-cols-7">
               <Card className="lg:col-span-4">
                 <CardHeader>
                   <CardTitle>Revenue Overview</CardTitle>
-                  <CardDescription>Monthly revenue, expenses, and profit trends</CardDescription>
+                  <CardDescription>
+                    Monthly revenue, expenses, and profit trends
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={revenueData}>
                       <defs>
-                        <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#059669" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#059669" stopOpacity={0} />
+                        <linearGradient
+                          id="colorRevenue"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="5%"
+                            stopColor="#059669"
+                            stopOpacity={0.3}
+                          />
+                          <stop
+                            offset="95%"
+                            stopColor="#059669"
+                            stopOpacity={0}
+                          />
                         </linearGradient>
-                        <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                        <linearGradient
+                          id="colorProfit"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="5%"
+                            stopColor="#10b981"
+                            stopOpacity={0.3}
+                          />
+                          <stop
+                            offset="95%"
+                            stopColor="#10b981"
+                            stopOpacity={0}
+                          />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -377,7 +413,9 @@ export default function Dashboard() {
               <Card className="lg:col-span-3">
                 <CardHeader>
                   <CardTitle>Sales by Category</CardTitle>
-                  <CardDescription>Distribution of sales across categories</CardDescription>
+                  <CardDescription>
+                    Distribution of sales across categories
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
@@ -387,13 +425,18 @@ export default function Dashboard() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }: any) =>
+                          `${name} ${(percent * 100).toFixed(0)}%`
+                        }
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
                       >
                         {salesByCategory.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell
+                            key={`cell-${index}`}
+                            fill={COLORS[index % COLORS.length]}
+                          />
                         ))}
                       </Pie>
                       <Tooltip
@@ -407,7 +450,10 @@ export default function Dashboard() {
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
-              </div>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-2">
+              
+            </div>
           </TabsContent>
         </Tabs>
       </main>
