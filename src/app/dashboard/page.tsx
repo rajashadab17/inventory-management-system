@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,6 +21,7 @@ import { Tabs } from "@radix-ui/react-tabs";
 import {
   AlertTriangle,
   Calendar,
+  ChevronRight,
   DollarSign,
   Download,
   Package,
@@ -452,7 +454,50 @@ export default function Dashboard() {
               </Card>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Recent Sales</CardTitle>
+                      <CardDescription>Latest transactions and orders</CardDescription>
+                    </div>
+                    <Button variant="ghost" size="sm" className="gap-2">
+                      View All
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {recentSales.map((sale) => (
+                      <div
+                        key={sale.id}
+                        className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-sm">{sale.customer}</p>
+                            <Badge
+                              variant={sale.status === "Completed" ? "default" : "secondary"}
+                              className={
+                                sale.status === "Completed"
+                                  ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-100"
+                                  : ""
+                              }
+                            >
+                              {sale.status}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-muted-foreground">
+                            {sale.id} • {sale.items} items • {sale.date}
+                          </p>
+                        </div>
+                        <p className="font-bold text-emerald-600">${sale.amount.toFixed(2)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
         </Tabs>
