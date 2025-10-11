@@ -126,6 +126,15 @@ const inventoryData = [
     lastUpdated: "2025-04-06",
   },
 ];
+export interface Sale {
+  id: string;
+  customer: string;
+  amount: number;
+  items: number;
+  date: string;
+  status: "Completed" | "Pending" | "Cancelled";
+}
+
 
 const recentSales = [
   {
