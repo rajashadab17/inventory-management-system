@@ -47,7 +47,7 @@ import {
   TrendingDown,
   TrendingUp
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -179,8 +179,15 @@ const recentSales:Sale[] = [
   },
 ];
 
+type StatCardProps = {
+  title: string;
+  value: string;
+  change: string;
+  trend: "up" | "down";
+  icon: React.ElementType;
+};
 
-const StatCard = ({ title, value, change, icon: Icon, trend }) => {
+const StatCard: FC<StatCardProps> = ({ title, value, change, icon: Icon, trend }) => {
   const isPositive = trend === "up";
   const TrendIcon = isPositive ? TrendingUp : TrendingDown;
 
@@ -215,6 +222,7 @@ const StatCard = ({ title, value, change, icon: Icon, trend }) => {
     </Card>
   );
 };
+
 
 export default function Dashboard() {
   useEffect(() => {
