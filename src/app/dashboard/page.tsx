@@ -136,7 +136,7 @@ export interface Sale {
 }
 
 
-const recentSales = [
+const recentSales:Sale[] = [
   {
     id: "INV-1234",
     customer: "Acme Corporation",

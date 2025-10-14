@@ -22,6 +22,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Sale } from "./page";
 
 const OverviewTab = ({recentSales, revenueData}) => {
   const salesByCategory = [
